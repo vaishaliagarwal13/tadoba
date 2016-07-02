@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.woodpeckers.tadoba.HomeActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_generate_report"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/action_generate_report"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_list_viewed_birds"
+        android:orderInCategory="101"
+        android:title="@string/action_list_viewed_birds"
         app:showAsAction="never" />
 </menu>
