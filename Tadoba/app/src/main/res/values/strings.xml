@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">Tadoba</string>
     <string name="action_generate_report">Generate Report</string>
-    <string name="action_list_viewed_birds">List Viewed Birds</string>
     <string name="title_bird_families">Bird Families</string>
     <string name="title_birds">Birds</string>
     <string name="checkbox_viewed_bird">Check Viewed Bird</string>
 
+    <string name="content_authority">com.woodpeckers.tadoba</string>
+
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">The wood sandpiper (Tringa glareola) is a small wader. This Eurasian species is the smallest of the shanks, which are mid-sized long-legged waders of the family Scolopacidae. The genus name Tringa is the New Latin name given to the green sandpiper by Aldrovandus in 1599 based on Ancient Greek trungas, a thrush-sized, white-rumped, tail-bobbing wading bird mentioned by Aristotle. " </string>
+    <string name="hello_blank_fragment">Aristotle</string>
 </resources>

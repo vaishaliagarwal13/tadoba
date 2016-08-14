@@ -10,8 +10,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/a2" />
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:id="@+id/bird_common_name"
@@ -44,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/bird_latin_name"
         android:layout_alignParentRight="true"
-        android:checked="true"
+        android:checked="false"
         android:buttonTint="@color/colorLightblue"/>
 
     <View

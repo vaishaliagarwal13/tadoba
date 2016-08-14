@@ -9,21 +9,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.crashlytics.android.Crashlytics;
-
-import io.fabric.sdk.android.Fabric;
-
 public class HomeActivity extends AppCompatActivity implements HomeActivityFragment.BirdFamilyInterface {
 
+
+    public static final String BIRD_FAMILY_ID = "BIRD_FAMILY_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_home);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle(R.string.title_bird_families);
+
         HomeActivityFragment fragment = HomeActivityFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -49,16 +48,13 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityFragm
         if (id == R.id.action_generate_report) {
             return true;
         }
-        else if (id == R.id.action_list_viewed_birds) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void onBirdFamilyClicked(int position) {
+    public void onBirdFamilyClicked(String familyId) {
         Intent intent = new Intent(this, BirdListActivity.class);
+        intent.putExtra(BIRD_FAMILY_ID, familyId);
         startActivity(intent);
     }
 

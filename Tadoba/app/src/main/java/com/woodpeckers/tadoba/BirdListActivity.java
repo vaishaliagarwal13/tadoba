@@ -13,8 +13,10 @@ public class BirdListActivity extends AppCompatActivity implements BirdListFragm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bird_list);
         setTitle(R.string.title_birds);
+        Intent intent = getIntent();
+        String birdFamilyId = intent.getStringExtra(HomeActivity.BIRD_FAMILY_ID);
 
-        BirdListFragment fragment = BirdListFragment.newInstance();
+        BirdListFragment fragment = BirdListFragment.newInstance(birdFamilyId);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
@@ -23,11 +25,5 @@ public class BirdListActivity extends AppCompatActivity implements BirdListFragm
 
     @Override
     public void onBirdListItemClicked(Bird bird) {
-        Intent intent = new Intent(this, BirdDetailActivity.class);
-        intent.putExtra(IntentParamConstants.PARAM_COMMON_NAME, bird.getCommonName());
-        intent.putExtra(IntentParamConstants.PARAM_LATIN_NAME, bird.getLatinName());
-        intent.putExtra(IntentParamConstants.PARAM_IMAGE_NAME, bird.getImage());
-        intent.putExtra(IntentParamConstants.PARAM_FAMILY_NAME, bird.getFamily());
-        startActivity(intent);
     }
 }

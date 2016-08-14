@@ -2,8 +2,12 @@ package com.woodpeckers.tadoba;
 
 import android.app.Activity;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +17,11 @@ import android.support.v7.widget.RecyclerView;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class HomeActivityFragment extends Fragment {
+public class HomeActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    private static final int LOADER_ID = 1;
     private BirdFamilyInterface mCallback;
+    private BirdFamilyRecyclerViewCursorAdapter birdFamilyAdapter;
 
     public HomeActivityFragment() {
     }
@@ -44,12 +50,34 @@ public class HomeActivityFragment extends Fragment {
         RecyclerView rView = (RecyclerView)view.findViewById(R.id.recyclerView);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(layoutManager);
+        birdFamilyAdapter = new BirdFamilyRecyclerViewCursorAdapter(null, mCallback);
+        rView.setAdapter(birdFamilyAdapter);
 
-        DummyBirdFactory dummyBirdFactory = new DummyBirdFactory();
-        BirdFamilyRecyclerViewAdapter rcAdapter = new BirdFamilyRecyclerViewAdapter(getActivity(), dummyBirdFactory.getBirdFamilies(), mCallback);
-        rView.setAdapter(rcAdapter);
+        getLoaderManager().initLoader(LOADER_ID, null, this);
 
         return view;
+    }
+
+    @Override
+    public Loader onCreateLoader(int id, Bundle args) {
+        CursorLoader loader = new CursorLoader(
+                getActivity(),
+                BirdContract.BirdFamilyEntry.CONTENT_URI,
+                null,
+                null,
+                null,
+                null);
+        return loader;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+        birdFamilyAdapter.swapCursor(cursor);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> cursorLoader) {
+        birdFamilyAdapter.swapCursor(null);
     }
 
     @Override
@@ -66,11 +94,11 @@ public class HomeActivityFragment extends Fragment {
             mCallback = (BirdFamilyInterface)activity;
         } else {
             throw new RuntimeException(activity.toString()
-                    + " must implement OnListFragmentInteractionListener");
+                    + " must implement BirdFamilyInterface");
         }
     }
 
     public interface BirdFamilyInterface {
-        public void onBirdFamilyClicked(int position);
+        public void onBirdFamilyClicked(String familyId);
     }
 }
