@@ -85,6 +85,7 @@ public class BirdListFragment extends Fragment implements BirdListRecyclerViewAd
             Context context = view.getContext();
             recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            recyclerView.addItemDecoration(new SimpleDividerItemDecoration(context));
             adapter = new BirdListRecyclerViewAdapter(null, mListener, this);
             recyclerView.setAdapter(adapter);
 

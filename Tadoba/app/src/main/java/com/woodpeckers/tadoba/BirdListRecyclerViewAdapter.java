@@ -78,7 +78,6 @@ public class BirdListRecyclerViewAdapter extends RecyclerViewCursorAdapter<BirdL
 
         Picasso.with(context)
                 .load("file:///android_asset/" + bird.getImageList().get(0).getImage())
-                .resize(300, 0)
                 .into(birdViewHolder.mBirdImageView);
 
         birdViewHolder.mViewedCheckBox.setOnClickListener(new View.OnClickListener() {

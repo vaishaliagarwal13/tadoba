@@ -9,6 +9,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true" />
 
@@ -45,14 +46,5 @@
         android:layout_alignParentRight="true"
         android:checked="false"
         android:buttonTint="@color/colorLightblue"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary"
-        android:layout_below="@+id/bird_image"
-        android:layout_alignLeft="@+id/bird_image"
-        android:layout_marginTop="8dp"
-        />
 
 </RelativeLayout>
